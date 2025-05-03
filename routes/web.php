@@ -23,7 +23,3 @@ Route::get('/admin/dashboard', function(){
 });
 
 Route::get('/logins', [LoginController::class, 'index'])->name('login');
-
-Route::get('admin/nilai', [NilaiController::class,'index'])->name('admin-nilai');
-Route::post('admin/nilai/import', [NilaiController::class,'import']);
-Route::post('/nilai/import_excel', [NilaiController::class, 'import_excel']);

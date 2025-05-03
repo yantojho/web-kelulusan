@@ -18,7 +18,7 @@
 </head>
 
 <body background="{{asset('images/auth/register.jpg')}}">
-<form method="POST" action="{{ route('login') }}">
+<form method="POST" action="{{ route('login.authenticate') }}">
 {{ csrf_field() }}
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
@@ -38,18 +38,18 @@
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"">
                   <label class="label">Email</label>
                   <div class="input-group">
-                    <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                    <input id="username" type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
                       </span>
                     </div>
                   </div>
-                    @if ($errors->has('email'))
+                    @error('email')
                         <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong>{{ $message }}</strong>
                         </span>
-                    @endif
+                    @enderror
                 </div>
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                   <label class="label">Password</label>
