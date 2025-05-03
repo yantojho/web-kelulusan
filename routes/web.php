@@ -11,9 +11,21 @@ Route::get('/', function () {
 
 Route::get('/admin/dashboard', function(){
     return view('admin.dashboard');
-});
+})->name('admin.dashboard');
 
 Route::get('/logins', [LoginController::class, 'index'])->name('login');
+Route::post('/logins', [LoginController::class, 'authenticate'])->name('login.authenticate');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/admin/push', function(){
+    $user = [
+        'name' => 'admin',
+        'email' => 'admin@admin.com',
+        'password' => Hash::make('admin'),
+    ];
+
+    \App\Models\User::create($user);
+});
 
 // nilai
 Route::get('/nilai', [nilaiController::class, 'index'])->name('admin-nilai');
@@ -24,4 +36,10 @@ Route::get('/siswa', [SiswaController::class, 'index'])->name('admin-siswa');
 Route::post('/siswa/import_excel', [SiswaController::class, 'import_excel'])->name('admin-siswa-import');
 
 //Mapel
-Route::resource('mapel', MapelController::class);
+Route::resource('mapel', MapelController::class)
+    ->name('index', 'admin.mapel')
+    ->name('store', 'admin.mapel.store')
+    ->name('edit', 'admin.mapel.edit_mapel')
+    ->name('update', 'admin.mapel.update')
+    ->name('destroy', 'admin.mapel.delete')
+    ->name('show', 'admin.mapel.show');
