@@ -23,3 +23,5 @@ Route::get('/admin/dashboard', function(){
 });
 
 Route::get('/logins', [LoginController::class, 'index'])->name('login');
+Route::post('/logins', [App\Http\Controllers\LoginController::class, 'authenticate'])->name('login.authenticate');
+Route::post('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
