@@ -7,6 +7,8 @@ use App\Models\siswa;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\SiswaImport;
 
+use File;
+
 class SiswaController extends Controller
 {
     public function index()
