@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{seting, Siswa};
+use App\Models\{seting, Siswa, jenismapel, mapel, nilai};
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class IndexController extends Controller
 {
@@ -36,5 +37,17 @@ class IndexController extends Controller
         $siswa = Siswa::where('nis', $nis)->where('nisn', $nisn)->firstOrFail();
         
         return view('hasil', compact('siswa', 'setting'));
+    }
+    public function skl($nis, $nisn){
+        $siswa = Siswa::where('nis', $nis)->where('nisn', $nisn)->firstOrFail();
+        $setting = seting::find(1);
+        $jenismapel = jenismapel::all();
+        $mapel = mapel::all();
+        $nilai = nilai::where('nis', $nis)->get();
+        // PDF::loadview('pegawai_pdf',['pegawai'=>$pegawai]);
+        Pdf::setOption(['dpi' => 300]);
+        $pdf = PDF::loadview('skl', compact('setting','siswa','jenismapel','mapel','nilai'))->setPaper('a4', 'portrait');
+        return $pdf->download('laporan-pegawai-pdf');
+        // return view('skl', compact('setting','siswa','jenismapel','mapel','nilai'));
     }
 }

@@ -70,7 +70,10 @@
 
                             <div class="my-3 text-center">
                                 <a href="{{ route('index') }}" class="btn btn-warning">Kembali</a>
-                                <a href="" class="btn btn-success">Download Surat Keterangan Lulus (SKL)</a>
+                                <a href="{{ route('skl', [
+                                    'nis' => $siswa->nis,	
+                                    'nisn' => $siswa->nisn,
+                                    ]) }}" class="btn btn-success">Download Surat Keterangan Lulus (SKL)</a>
                                 @if($siswa->status_bayar == 1)
                                 <a href="" class="btn btn-primary">Download Transkip Nilai</a>
                                 @else
