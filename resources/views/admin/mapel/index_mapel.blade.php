@@ -14,7 +14,7 @@
 <div class="row">
 
   <div class="col-lg-2">
-    <a href="{{ route('mapel.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah Mapel</a>
+    <a href="{{ route('admin.mapel.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah Mapel</a>
   </div>
     <div class="col-lg-12">
                   @if (Session::has('message'))
@@ -47,6 +47,12 @@
                                 <td>{{ $item->jenismapel->nm_jenis}}</td>
 
                                 <td>
+                                  <a href="{{ route('admin.mapel.edit_mapel', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                  <form action="{{ route('admin.mapel.delete', $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                  </form>
                                   
                                 </td>
                           

@@ -29,6 +29,8 @@ Route::get('/admin/push', function(){
 
 // nilai
 Route::get('/nilai', [nilaiController::class, 'index'])->name('admin-nilai');
+Route::get('/nilai/edit/{id}', [nilaiController::class, 'edit'])->name('admin-nilai.edit');
+Route::put('/nilai/edit/{id}', [nilaiController::class, 'update'])->name('admin-nilai.update');
 Route::post('/nilai/import_excel', [nilaiController::class, 'import_excel'])->name('admin-nilai-import');
 
 // siswa
@@ -38,6 +40,7 @@ Route::post('/siswa/import_excel', [SiswaController::class, 'import_excel'])->na
 //Mapel
 Route::resource('mapel', MapelController::class)
     ->name('index', 'admin.mapel')
+    ->name('create', 'admin.mapel.create')
     ->name('store', 'admin.mapel.store')
     ->name('edit', 'admin.mapel.edit_mapel')
     ->name('update', 'admin.mapel.update')

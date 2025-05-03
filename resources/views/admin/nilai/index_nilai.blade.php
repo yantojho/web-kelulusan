@@ -59,6 +59,17 @@
                                 <td>{{ $item->nm_mapel }}</td>
                                 <td>{{ $item->nilai }}</td>
                                 <td>
+                                    <a href="{{ url('')}}/nilai/edit/{{ $item->id }}" class="btn btn-warning btn-sm">
+                                        <i class="fa fa-pencil-alt"></i>
+                                    </a>
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ url('')}}/nilai/delete/{{ $item->id }}" class="d-inline" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                       </tbody>
