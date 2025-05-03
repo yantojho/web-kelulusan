@@ -1,18 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{LoginController,NilaiController, SiswaController};
+use App\Http\Controllers\{LoginController,NilaiController, SiswaController,MapelController};
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
 
 Route::get('/', function () {
     return view('index');
@@ -31,3 +22,6 @@ Route::post('/nilai/import_excel', [nilaiController::class, 'import_excel'])->na
 // siswa
 Route::get('/siswa', [SiswaController::class, 'index'])->name('admin-siswa');
 Route::post('/siswa/import_excel', [SiswaController::class, 'import_excel'])->name('admin-siswa-import');
+
+//Mapel
+Route::resource('mapel', MapelController::class);

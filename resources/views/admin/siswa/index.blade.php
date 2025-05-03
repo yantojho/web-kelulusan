@@ -49,8 +49,8 @@
                             <th>TTL</th>
                             <th>Konsentrasi</th>
                             <th>Kelas</th>
-                            <th>Status Lulus</th>
-                            <th>Status Bayar</th>
+                            <th>S-Lulus</th>
+                            <th>S-Bayar</th>
                             <th>Action</th>
                         </tr>
                       </thead>
@@ -63,8 +63,20 @@
                                 <td>{{ $item->nm_siswa }}</td>
                                 <td>{{ $item->ttl }}</td>
                                 <td>{{ $item->jen_konsentrasi }}</td>
-                                <td>{{ $item->status_lulus }}</td>
-                                <td>{{ $item->status_bayar }}</td>
+                                <td>{{ $item->kls }}</td>
+                                <td>
+                                    
+                                @if($item->status_lulus == '1') 
+                                    Lulus
+                                @endif
+                                   </td>
+                                <td>
+                                    @if($item->status_bayar=='1')
+                                        lunas
+                                    @else
+                                        Belum
+                                    @endif
+                                </td>
                                 <td>
                             </tr>
                         @endforeach
