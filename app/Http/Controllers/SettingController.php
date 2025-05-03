@@ -16,7 +16,6 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         $data = $request->validate([
-            'kop' => 'required',
             'no_surat' => 'required',
             'tgl' => 'required',
             'nm_kepsek' =>'required',
@@ -27,6 +26,8 @@ class SettingController extends Controller
         if($request->file('kop')){
             $request->file('kop')->move('kop/', $request->file('kop')->getClientOriginalName());
             $data['kop'] = $request->file('kop')->getClientOriginalName();
+            $setting = Seting::updateOrCreate(['id' => $request->id], $data);
+        }else{
             $setting = Seting::updateOrCreate(['id' => $request->id], $data);
         }
 
