@@ -6,6 +6,7 @@ use App\Http\Controllers\{IndexController, LoginController,NilaiController, Sisw
 
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::post('/cek-kelulusan', [IndexController::class, 'cekKelulusan'])->name('cek-kelulusan');
 
 Route::get('/admin/dashboard', function(){
     return view('admin.dashboard');
