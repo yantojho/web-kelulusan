@@ -45,7 +45,7 @@
             </div>
           </li>
           <li class="nav-item "> 
-            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+            <a class="nav-link" href="{{ route('admin.setting') }}">
               <i class="menu-icon fa fa-cog"></i>
               <span class="menu-title">Pengaturan</span>
             </a>
