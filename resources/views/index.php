@@ -21,47 +21,39 @@
         <!-- Background Video-->
         <video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="assets/mp4/Profil.mp4" type="video/mp4" /></video>
         <!-- Masthead-->
+
         <div class="masthead">
             <div class="masthead-content text-white">
                 <div class="container-fluid px-4 px-lg-0">
-                    <h1 class="fst-italic lh-1 mb-4">Our Website is Coming Soon</h1>
-                    <p class="mb-5">We're working hard to finish the development of this site. Sign up below to receive updates and to be notified when we launch!</p>
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- * * SB Forms Contact Form * *-->
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- This form is pre-integrated with SB Forms.-->
-                    <!-- To make this form functional, sign up at-->
-                    <!-- https://startbootstrap.com/solution/contact-forms-->
-                    <!-- to get an API token!-->
-                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <!-- Email address input-->
-                        <div class="row input-group-newsletter">
-                            <div class="col"><input class="form-control" id="email" type="email" placeholder="Enter email address..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
-                            <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notify Me!</button></div>
-                        </div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="email:email">Email is not valid.</div>
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                            <div class="text-center mb-3 mt-2">
-                                <div class="fw-bolder">Form submission successful!</div>
-                                To activate this form, sign up at
-                                <br />
-                                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                    <h1 class="fst-italic lh-1 mb-4">Pengumuman Kelulusan</h1>
+                    <p class="mb-5">Pengumuman kelulusan akan dibuka pada waktu yang ditentukan. Silahkan tunggu hingga waktu pengumuman tiba.</p>
+                    
+                    <!-- Countdown Timer -->
+                    <div class="countdown-container mb-5">
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <h3 id="days">00</h3>
+                                <p>Hari</p>
+                            </div>
+                            <div class="col-3">
+                                <h3 id="hours">00</h3>
+                                <p>Jam</p>
+                            </div>
+                            <div class="col-3">
+                                <h3 id="minutes">00</h3>
+                                <p>Menit</p>
+                            </div>
+                            <div class="col-3">
+                                <h3 id="seconds">00</h3>
+                                <p>Detik</p>
                             </div>
                         </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
-                    </form>
+                    </div>
+
                 </div>
             </div>
         </div>
+        
         <!-- Social Icons-->
         <!-- For more icon options, visit https://fontawesome.com/icons?d=gallery&p=2&s=brands-->
         <div class="social-icons">
@@ -80,5 +72,44 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+                            
+                    <!-- Script untuk countdown timer -->
+                    <script>
+                        // Mengambil tanggal dari database
+                        var countDownDate = new Date("<?php echo $setting->tgl ?? date('Y-m-d H:i:s'); ?>").getTime();
+                        
+                        // Update countdown setiap 1 detik
+                        var x = setInterval(function() {
+                            // Mendapatkan waktu saat ini
+                            var now = new Date().getTime();
+                            
+                            // Menghitung selisih waktu
+                            var distance = countDownDate - now;
+                            
+                            // Menghitung hari, jam, menit, dan detik
+                            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                            
+                            // Menampilkan hasil countdown
+                            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+                            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+                            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+                            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+                            
+                            // Jika countdown selesai
+                            if (distance < 0) {
+                                clearInterval(x);
+                                document.getElementById("days").innerHTML = "00";
+                                document.getElementById("hours").innerHTML = "00";
+                                document.getElementById("minutes").innerHTML = "00";
+                                document.getElementById("seconds").innerHTML = "00";
+                                
+                                // Redirect ke halaman login atau tampilkan pesan
+                                window.location.href = "<?php echo url('/logins'); ?>";
+                            }
+                        }, 1000);
+                    </script>
     </body>
 </html>

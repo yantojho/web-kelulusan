@@ -1,13 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{LoginController,NilaiController, SiswaController,MapelController, JenisMapelController};
+use App\Http\Controllers\{IndexController, LoginController,NilaiController, SiswaController,MapelController, JenisMapelController, SettingController};
 
 
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::get('/admin/dashboard', function(){
     return view('admin.dashboard');
@@ -26,6 +24,9 @@ Route::get('/admin/push', function(){
 
     \App\Models\User::create($user);
 });
+
+Route::get('/admin/setting', [SettingController::class, 'index'])->name('admin.setting');
+Route::post('/admin/setting', [SettingController::class, 'update'])->name('admin.setting.update');
 
 // nilai
 Route::get('/nilai', [nilaiController::class, 'index'])->name('admin-nilai');
