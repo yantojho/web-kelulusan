@@ -47,7 +47,7 @@ class IndexController extends Controller
         // PDF::loadview('pegawai_pdf',['pegawai'=>$pegawai]);
         Pdf::setOption(['dpi' => 300]);
         $pdf = PDF::loadview('skl', compact('setting','siswa','jenismapel','mapel','nilai'))->setPaper('a4', 'portrait');
-        return $pdf->download('laporan-pegawai-pdf');
+        return $pdf->download('SKL-'.$siswa->nm_siswa);
         // return view('skl', compact('setting','siswa','jenismapel','mapel','nilai'));
     }
 }
