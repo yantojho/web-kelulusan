@@ -25,7 +25,6 @@
           <div class="card card-header">
             <div class="row">
               <div class="col-md-12">
-                <a href="#" class="btn btn-primary btn-primary btn-fw"><i class="fa fa-plus"></i> Tambah Anggota</a>
                 <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#importExcel">
                   <i class="fa fa-upload"></i> Import
                 </a>
