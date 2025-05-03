@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{LoginController,NilaiController, SiswaController,MapelController};
+use App\Http\Controllers\{LoginController,NilaiController, SiswaController,MapelController, JenisMapelController};
 
 
 
@@ -43,3 +43,12 @@ Route::resource('mapel', MapelController::class)
     ->name('update', 'admin.mapel.update')
     ->name('destroy', 'admin.mapel.delete')
     ->name('show', 'admin.mapel.show');
+
+Route::resource('jenis-mapel', JenisMapelController::class)
+    ->name('index', 'admin.jenismapel')
+    ->name('create', 'admin.jenismapel.create')
+    ->name('store', 'admin.jenismapel.store')
+    ->name('edit', 'admin.jenismapel.edit_jenismapel')
+    ->name('update', 'admin.jenismapel.update')
+    ->name('destroy', 'admin.jenismapel.delete')
+    ->name('show', 'admin.jenismapel.show');
