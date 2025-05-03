@@ -36,7 +36,7 @@
           </div>
 
                 <div class="card-body">
-                  <h4 class="card-title">Data Anggota</h4>
+                  <h4 class="card-title">Data Nilai</h4>
                   
                   <div class="table-responsive">
                     <table class="table table-striped table-sm table-hover" id="table">
